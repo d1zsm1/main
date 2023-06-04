@@ -5,8 +5,7 @@ CREATE TABLE IF NOT EXISTS Genre (
 	
 CREATE TABLE IF NOT EXISTS Performer (
 	Performer_ID SERIAL PRIMARY KEY,
-	Performer_Name VARCHAR(60) NOT NULL,
-	Genre_ID INTEGER NOT NULL REFERENCES Genre(Genre_ID)
+	Performer_Name VARCHAR(60) NOT NULL
 	);
 
 CREATE TABLE IF NOT EXISTS Genres_Performers (
@@ -18,8 +17,7 @@ CREATE TABLE IF NOT EXISTS Genres_Performers (
 CREATE TABLE IF NOT EXISTS Album (
 	Album_ID SERIAL PRIMARY KEY,
 	Album_Name VARCHAR(60) NOT NULL,
-	Year_Edition INTEGER NOT NULL,
-	Performer_ID INTEGER NOT NULL REFERENCES Performer(Performer_ID)
+	Year_Edition INTEGER NOT NULL
 	);
 
 CREATE TABLE IF NOT EXISTS Performers_Albums (
@@ -38,6 +36,11 @@ CREATE TABLE IF NOT EXISTS Song (
 CREATE TABLE IF NOT EXISTS Collection (
 	Collection_ID SERIAL PRIMARY KEY,
 	Collection_Name VARCHAR(60) NOT NULL,
-	Year_Edition INTEGER NOT NULL,
-	Song_ID INTEGER NOT NULL REFERENCES Song(Song_ID)
+	Year_Edition INTEGER NOT NULL
+	);
+	
+CREATE TABLE IF NOT EXISTS Songs_Collections (
+	Song_ID INTEGER REFERENCES Song(Song_ID),
+	Collection_ID INTEGER REFERENCES Collection(Collection_ID),
+	CONSTRAINT pksc PRIMARY KEY (Song_ID, Collection_ID)
 	);
