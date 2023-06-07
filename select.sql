@@ -33,4 +33,4 @@ WHERE NOT performer_name LIKE '% %'
 
 SELECT song_name
 FROM song
-WHERE song_name LIKE '%Мой%' OR song_name LIKE '%My%'
+WHERE UPPER(song_name) LIKE '%МОЙ%' OR UPPER(song_name) LIKE '%MY%'
